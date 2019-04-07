@@ -23,7 +23,7 @@ namespace 出窑服务图片识别版
              vThread = new Thread(new ThreadStart(_实时取流类.开始实时取流));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             _实时取流类.开始标识1 = true;
 
@@ -31,7 +31,7 @@ namespace 出窑服务图片识别版
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             _实时取流类.开始标识1 = false;
             vThread.Join();

@@ -1,11 +1,7 @@
 ﻿using OpenCvSharp;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace 出窑服务图片识别版
 {
@@ -119,14 +115,18 @@ namespace 出窑服务图片识别版
         public void 开始实时取流()
         {
             using (var windowSrc = new Window("src"))
-            using (var frame = new Mat())
-            using (var image缩小 = new Mat())
             {
                 int II = 0;
+                float ou = 0;
+                Int32 I = 0;
+                Point textPos = new Point(1, 100);
+                Random rd = new Random();
                 while (开始标识1)
                 {
-                    while (true)
+                    using (var frame = new Mat())
+                    using (var image缩小 = new Mat())
                     {
+
 
                         for (int i = 0; i < capture.Fps; i++)
                         {
@@ -139,7 +139,7 @@ namespace 出窑服务图片识别版
                             }
 
                         }
-                        if (II>30)
+                        if (II > 30)
                         {
                             Thread.Sleep(1000);
                             capture = new VideoCapture(取流路径);
@@ -156,27 +156,25 @@ namespace 出窑服务图片识别版
                         if (frame.Empty())
                             break;
 
-                        Cv2.Resize(frame, image缩小, new Size(280, 280), 0, 0, InterpolationFlags.Linear);//缩小28*28
+                        Cv2.Resize(frame, image缩小, new Size(208, 208), 0, 0, InterpolationFlags.Linear);//缩小28*28
 
                         Cv2.ImWrite(临时图片路径, image缩小);
-
-                        double ou = 0;
-
-                        Int32 I = _图片识别类.识别方法(out ou);
-                        if (ou> Convert.ToDouble(大于多少得概率))
+                        I = _图片识别类.识别方法(out ou);
+                        //I = rd.Next(100, 500);
+                        //ou = 0.5;
+                        if (ou > Convert.ToDouble(大于多少得概率))
                         {
                             _逻辑处理类.逻辑判断方法(I);
                         }
-
                         if (显示小窗标识 == "1")
                         {
-                            Point textPos = new Point(1, 100);
-                            image缩小.PutText(I.ToString()+"    " + ou.ToString()+"  ", textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
+                            image缩小.PutText(I.ToString() + "    " + ou.ToString() + "  ", textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
                             windowSrc.ShowImage(image缩小);
 
                         }
                         Cv2.WaitKey(int.Parse(等待时间));
                     }
+
 
                 }
             }

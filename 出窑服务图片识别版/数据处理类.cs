@@ -9,7 +9,7 @@ namespace 出窑服务图片识别版
     {
         string sqlite_进出窑_变化日记 = "insert into Car_state (Date,cCAR_NO,cCAR_nub,cCAR_binary,cremark,cManufacture) values('{0}','{1}','{2}','{3}','{4}','{5}')";
         string sqlite_工位及RFID = "insert into The_historical_status (Date,cGWid,cGWlineCode,cGW_text,cManufacture,statu) values('{0}','{1}','{2}','{3}','{4}','{5}')";
-        string sql_工位 = "INSERT INTO CmdGongWei (cGWid,cGWlineCode,cManufacture) VALUES ('{0}','{1}','{2}')";
+        string sql_工位 = "INSERT INTO CmdGongWei1 (cGWid,cGWlineCode,cManufacture) VALUES ('{0}','{1}','{2}')";
         string sqlite_错误日记 = "insert into The_historical_status (Date,cGWid,cGWlineCode,cGW_text,cManufacture,statu) values('{0}','{1}','{2}','{3}','{4}','{5}')";
 
         StringBuilder sb_sql_车辆状态 = new StringBuilder();
