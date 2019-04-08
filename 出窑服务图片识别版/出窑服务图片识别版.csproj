@@ -161,6 +161,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="bin\x64\Debug\logs_2\pb\frozen_model.pb" />
+    <None Include="bin\x64\Debug\logs_2\pb\frozen_model_33000_04_07.pb" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
