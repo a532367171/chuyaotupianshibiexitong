@@ -172,5 +172,110 @@ namespace 出窑服务图片识别版
 
 
         }
+
+        public TFTensor 转换方法(byte[] bytes)
+        {
+            //if (b)
+            //{
+            //    contents = File.ReadAllBytes(file);
+
+            //    // DecodeJpeg uses a scalar String-valued tensor as input.
+
+            //    tensor = TFTensor.CreateString(contents);
+            //    b = false;
+            //}
+
+
+
+
+            //// DecodeJpeg uses a scalar String-valued tensor as input.
+
+            tensor = TFTensor.CreateString(bytes);
+
+
+
+            //contents  = null;
+
+            // Construct a graph to normalize the image 归一化
+
+            // Execute that graph to normalize this one image 执行图规范化这个形象
+            //using (var session = new TFSession(graph1))
+            //{
+            //    var normalized = session.Run(
+            //        inputs: new[] { input },
+            //        inputValues: new[] { tensor },
+            //        outputs: new[] { output });
+            //    //tensor = null;
+            //    return normalized[0];
+            //}
+
+
+
+
+
+
+
+            //using (var session = new TFSession(graph1))
+            //{
+            //var session = new TFSession(graph1);
+            //    var runner = session.GetRunner();
+
+            //    runner.AddInput(input, tensor);
+            //    runner.Fetch(output);
+            //    normalized = runner.Run();
+
+            //    //session.CloseSession();
+            //    session.DeleteSession();
+            //    runner = null;
+            //    //return normalized[0];
+
+            ////}
+            //return 1;
+
+
+
+            using (var session = new TFSession(graph1))
+            {
+
+                try
+                {
+                    var runner = session.GetRunner();
+
+                    runner.AddInput(input, tensor);
+                    runner.Fetch(output);
+                    normalized = runner.Run();
+
+                    return normalized[0];
+                }
+                catch (Exception e)
+                {
+                    //Console.WriteLine(e);
+                    throw;
+                }
+                finally
+                {
+                    session.Dispose();
+                    //session.CloseSession();
+                    //session.DeleteSession();
+
+                }
+
+            }
+
+            //normalized = session.Run(
+            //        inputs: new[] { input },
+            //        inputValues: new[] { tensor },
+            //        outputs: new[] { output });
+
+            //tensor = null;
+
+            //return normalized[0];
+
+
+
+
+
+        }
+
     }
 }

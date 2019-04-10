@@ -149,6 +149,7 @@
     <Compile Include="图片识别类.cs" />
     <Compile Include="图片转换成张量类.cs" />
     <Compile Include="实时取流类.cs" />
+    <Compile Include="实时读取类修改版1.cs" />
     <Compile Include="数据处理类.cs" />
     <Compile Include="新旧值结构.cs" />
     <Compile Include="运行情况.cs" />

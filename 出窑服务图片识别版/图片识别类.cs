@@ -163,6 +163,122 @@ namespace 出窑服务图片识别版
 
         }
 
+        public Int32 识别方法(out float ou, byte[] bytes)
+        {
+
+            tensor = _图片转换成张量类.转换方法(bytes);
+
+
+            var probabilities11 = ((float[][][][])tensor.GetValue(jagged: true))[0];
+            //tensor = CreateTensorFromImageFile(临时图片路径);
+
+            using (var session = new TFSession(graph))
+            {
+                try
+                {
+                    var runner = session.GetRunner();
+
+                    //runner.AddInput(graph["x_input"][0], tensor).Fetch(graph["softmax_linear/softmax_linear"][0]);
+
+                    //runner.AddInput(graph["x_input"][0], tensor).Fetch(graph["softmax_z/softmax_z"][0]);
+
+                    runner.AddInput(graph["x_input"][0], tensor);
+                    runner.Fetch(graph["softmax_z/softmax_z"][0]);
+
+                    output = runner.Run();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                finally
+                {
+                    session.Dispose();
+                    //session.CloseSession();
+                    //session.DeleteSession();
+
+                }
+
+            }
+
+            //Random rd = new Random();
+
+            //ou = rd.Next(100, 500);
+            //return rd.Next(100, 500);
+
+
+            result = output[0];
+
+            rshape = result.Shape;
+
+            //var probabilities1 = ((float[][])result.GetValue(jagged: true))[0];
+            //var val1 = (float[,])result.GetValue(jagged: false);
+            //var val2 = (float[])result.GetValue(jagged: true);
+
+            if (result.NumDims != 2 || rshape[0] != 1)
+            {
+                var shape = "";
+                foreach (var d in rshape)
+                {
+                    shape += $"{d} ";
+                }
+                shape = shape.Trim();
+                Console.WriteLine($"Error: expected to produce a [1 N] shaped tensor where N is the number of labels, instead it produced one with shape [{shape}]");
+                Environment.Exit(1);
+            }
+
+            jagged = true;
+            //jagged = false;
+
+            bestIdx = 0;
+
+            p = 0;
+            best = 0;
+            if (jagged)
+            {
+                var probabilities = ((float[][])result.GetValue(jagged: true))[0];
+                //double[] d = floatTodouble(probabilities);
+                //double[] retResult = Softmax(d);
+
+                for (int i = 0; i < probabilities.Length; i++)
+                {
+                    if (probabilities[i] > best)
+                    {
+                        bestIdx = i;
+                        //best = probabilities[i];
+                        best = probabilities[i];
+
+                    }
+                }
+
+            }
+            else
+            {
+                var val = (float[,])result.GetValue(jagged: false);
+                for (int i = 0; i < val.GetLength(1); i++)
+                {
+                    if (val[0, i] > best)
+                    {
+                        bestIdx = i;
+                        best = val[0, i];
+                    }
+                }
+            }
+
+            tensor = null;
+
+            result = null;
+
+            rshape = null;
+
+            ou = best;
+
+            return bestIdx;
+
+        }
+
+
         private static double[] floatTodouble(float[] probabilities)
         {
             double[] DOU = new double[8];
