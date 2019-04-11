@@ -204,64 +204,78 @@ namespace 出窑服务图片识别版
                             frame备份 = frame.Clone();
                         }
 
+                        //if (frame备份)
+                        //{
+
+                        //}
 
                         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
                         stopwatch.Start(); //  开始监视代码
-
-                        Cv2.Resize(frame备份, image缩小, new Size(208, 208), 0, 0, InterpolationFlags.Linear); //缩小28*28
-
-                        //Cv2.ImWrite(临时图片路径, image缩小);
-                        //byte[] bytes = image缩小.ImEncode(".jpg");
-
                         try
                         {
-                            I = _图片识别类.识别方法(out ou);
+                            Cv2.Resize(frame备份, image缩小, new Size(208, 208), 0, 0, InterpolationFlags.Linear); //缩小28*28
 
-                            //I1 = _图片识别类.识别方法(out ou1, bytes);
+                            Cv2.ImWrite(临时图片路径, image缩小);
+                            //byte[] bytes = image缩小.ImEncode(".jpg");
+
+                            try
+                            {
+                                I = _图片识别类.识别方法(out ou);
+
+                                //I1 = _图片识别类.识别方法(out ou1, bytes);
 
 
+                            }
+                            catch (Exception e)
+                            {
+
+                                throw;
+                            }
+
+                            //I = rd.Next(100, 500);
+                            //ou = 0.5;
+                            if (ou > Convert.ToDouble(大于多少得概率))
+                            {
+                                _逻辑处理类.逻辑判断方法(I);
+                            }
+
+                            stopwatch.Stop(); //  停止监视
+                            TimeSpan timeSpan = stopwatch.Elapsed; //  获取总时间
+                                                                   //double hours = timeSpan.TotalHours; // 小时
+                                                                   //double minutes = timeSpan.TotalMinutes;  // 分钟
+                                                                   //double seconds = timeSpan.TotalSeconds;  //  秒数
+                            double milliseconds = timeSpan.TotalMilliseconds;  //  毫秒数
+
+                            if (显示小窗标识 == "1")
+                            {
+                                image缩小.PutText(I.ToString() + "    " + ou.ToString() + "  " + milliseconds.ToString(), textPos,
+                                    HersheyFonts.HersheySimplex, 0.5, Scalar.White);
+                                image缩小.PutText(I1.ToString() + "    " + ou1.ToString() + "  " + milliseconds.ToString(), textPos1,
+                                    HersheyFonts.HersheySimplex, 0.5, Scalar.White);
+                                window概率.ShowImage(image缩小);
+
+                            }
+
+                            if ((int)milliseconds > 1000)
+                            {
+                                Cv2.WaitKey(1);
+                            }
+                            else
+                            {
+
+                                Thread.Sleep(1000 - (int)milliseconds);
+                                Cv2.WaitKey(1);
+
+                            }
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
 
                             throw;
                         }
+                       
 
-                        //I = rd.Next(100, 500);
-                        //ou = 0.5;
-                        if (ou > Convert.ToDouble(大于多少得概率))
-                        {
-                            _逻辑处理类.逻辑判断方法(I);
-                        }
-
-                        stopwatch.Stop(); //  停止监视
-                        TimeSpan timeSpan = stopwatch.Elapsed; //  获取总时间
-                        //double hours = timeSpan.TotalHours; // 小时
-                        //double minutes = timeSpan.TotalMinutes;  // 分钟
-                        //double seconds = timeSpan.TotalSeconds;  //  秒数
-                        double milliseconds = timeSpan.TotalMilliseconds;  //  毫秒数
-
-                        if (显示小窗标识 == "1")
-                        {
-                            image缩小.PutText(I.ToString() + "    " + ou.ToString() + "  " + milliseconds.ToString(), textPos,
-                                HersheyFonts.HersheySimplex, 0.5, Scalar.White);
-                            image缩小.PutText(I1.ToString() + "    " + ou1.ToString() + "  " + milliseconds.ToString(), textPos1,
-                                HersheyFonts.HersheySimplex, 0.5, Scalar.White);
-                            window概率.ShowImage(image缩小);
-
-                        }
-
-                        if ((int)milliseconds > 1000)
-                        {
-                            Cv2.WaitKey(1);
-                        }
-                        else
-                        {
-
-                            Thread.Sleep(1000 - (int)milliseconds);
-                            Cv2.WaitKey(1);
-
-                        }
+                       
 
 
 
