@@ -204,10 +204,10 @@ namespace 出窑服务图片识别版
                             frame备份 = frame.Clone();
                         }
 
-                        //if (frame备份)
-                        //{
-
-                        //}
+                        if (frame.Empty())
+                        {
+                            break;
+                        }
 
                         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
                         stopwatch.Start(); //  开始监视代码
