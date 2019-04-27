@@ -35,15 +35,23 @@ namespace 出窑服务图片识别版
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            _实时取流类.开始实时取流标识1 = false;
-            vThread1.Join();
-            vThread2.Join();
+            _实时取流类.开始实时识别标识1 = true;
+            vThread2.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            _实时取流类.开始实时识别标识1 = true;
-            vThread2.Start();
+
+
+
+            _实时取流类.开始实时取流标识1 = false;
+            _实时取流类.开始实时识别标识1 = false;
+
+            //vThread1.Join();
+            //vThread2.Join();
+
+            Application.Exit();
+            System.Environment.Exit(0);
 
         }
     }

@@ -163,6 +163,7 @@
     </None>
     <None Include="bin\x64\Debug\logs_2\pb\frozen_model.pb" />
     <None Include="bin\x64\Debug\logs_2\pb\frozen_model_33000_04_07.pb" />
+    <None Include="bin\x64\Debug\logs_2\pb\ZSD_chuyao_model_49999_04_27.pb" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
   <ItemGroup>
     <Content Include="bin\x64\Debug\logs_2\pb\1.mp4" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

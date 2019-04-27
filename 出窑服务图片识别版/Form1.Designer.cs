@@ -35,31 +35,31 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(91, 12);
+            this.button1.Location = new System.Drawing.Point(27, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(52, 40);
+            this.button1.Size = new System.Drawing.Size(116, 40);
             this.button1.TabIndex = 0;
-            this.button1.Text = "启动";
+            this.button1.Text = "启动图像实时读取";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(91, 104);
+            this.button2.Location = new System.Drawing.Point(27, 58);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(52, 42);
+            this.button2.Size = new System.Drawing.Size(116, 42);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "启动图像实时识别";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(91, 58);
+            this.button3.Location = new System.Drawing.Point(27, 106);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(52, 40);
+            this.button3.Size = new System.Drawing.Size(116, 40);
             this.button3.TabIndex = 2;
-            this.button3.Text = "启动";
+            this.button3.Text = "停止线程及退出";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 

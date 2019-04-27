@@ -283,33 +283,65 @@ namespace 出窑服务图片识别版
 
                 var isqlite_结果 = _保存旧值.Save_the_车辆状态_value("出窑图片版", int32_这次标识.ToString(), Manufacture);
 
-                switch (int32_这次标识)
+                if (Manufacture== "福建省榕圣市政工程股份有限公司连江建材分公司")
                 {
-                    case 0:
-                        On空车事件触发(Manufacture);
-                        break;
-                    case 1:
-                        On出一号窑事件触发(Manufacture);
-                        break;
-                    case 2:
-                        On出二号窑事件触发(Manufacture);
-                        break;
-                    case 3:
-                        On出三号窑事件触发(Manufacture);
-                        break;
-                    case 4:
-                        On出四号窑事件触发(Manufacture);
-                        break;
-                    case 5:
-                        On一号生产线上车事件触发(Manufacture);
-                        break;
-                    case 6:
-                        On二号生产线下车事件触发(Manufacture);
-                        break;
-                    case 7:
-                        On满车事件触发(Manufacture);
-                        break;
+                    switch (int32_这次标识)
+                    {
+                        case 0:
+                            On空车事件触发(Manufacture);
+                            break;
+                        case 1:
+                            On出一号窑事件触发(Manufacture);
+                            break;
+                        case 2:
+                            On出二号窑事件触发(Manufacture);
+                            break;
+                        case 3:
+                            On出三号窑事件触发(Manufacture);
+                            break;
+                        case 4:
+                            On出四号窑事件触发(Manufacture);
+                            break;
+                        case 5:
+                            On一号生产线上车事件触发(Manufacture);
+                            break;
+                        case 6:
+                            On二号生产线下车事件触发(Manufacture);
+                            break;
+                        case 7:
+                            On满车事件触发(Manufacture);
+                            break;
+                    }
                 }
+
+                if (Manufacture == "中国水利水电第七工程局有限公司福州管片厂")
+                {
+                    switch (int32_这次标识)
+                    {
+                        case 0:
+                            On空车事件触发(Manufacture);
+                            break;
+                        case 1:
+                            On出一号窑事件触发(Manufacture);
+                            break;
+                        case 2:
+                            On出二号窑事件触发(Manufacture);
+                            break;
+                        case 3:
+                            On出三号窑事件触发(Manufacture);
+                            break;
+                        case 4:
+                            On出四号窑事件触发(Manufacture);
+                            break;
+                        case 5:
+                            On一号生产线上车事件触发(Manufacture);
+                            break;
+                        case 6:
+                            On满车事件触发(Manufacture);
+                            break;
+                    }
+                }
+
                 int32_次数标识 = 0;
 
             }
