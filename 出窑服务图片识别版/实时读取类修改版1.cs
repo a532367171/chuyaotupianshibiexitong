@@ -143,10 +143,10 @@ namespace 出窑服务图片识别版
                         {
 
 
-                            lock (objlock)
-                            {
+                            //lock (objlock)
+                            //{
                                 capture.Read(frame);
-                            }
+                            //}
 
 
                             if (frame.Empty())
@@ -199,10 +199,10 @@ namespace 出窑服务图片识别版
                     using (var window概率 = new Window("概率"))
                     using (var image缩小 = new Mat())
                     {
-                        lock (objlock1)
-                        {
+                        //lock (objlock1)
+                        //{
                             frame备份 = frame.Clone();
-                        }
+                        //}
 
                         if (frame备份.Cols != 0)
                         {
